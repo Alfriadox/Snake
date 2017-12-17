@@ -1,19 +1,19 @@
 import time
-
 # ----- Edit this to customize / change difficulty / debug
 grid_size = 24
 start_len = 6
-frame_rate = 10
+frame_rate = 60
+snake_rate = 6  # frames between snake updates
 debug = False
 colors = {
     "background" : color(100,100,100),
-    "gift" : color(250,100,250),
-    "gift weight" : 1,
+    "gift" : color(250,50,50),
+    "gift weight" : 0,
     "ingame score" : color(255,255,255),
     "final score" : color(0,0,0),
-    "snake head" : color(200,200,50),
-    "snake body" : color(200,150,150),
-    "snake weight" : 1,
+    "snake head" : color(100,100,250),
+    "snake body" : color(100,250,100),
+    "snake weight" : 0,
     "grid color" : color(10,10,10),
     "grid weight": 1,
 }
@@ -66,9 +66,10 @@ def draw():
     if debug:
         for b in bends:
             b.show()
-    for s in snake:
-        s.update()
-        #print(s.pos)
+    if frameCount%snake_rate == snake_rate-1:
+        for s in snake:
+            s.update()
+            #print(s.pos)
     drawSnake()
     textSize(height/grid_size/2)
     fill(colors["ingame score"])
@@ -92,7 +93,7 @@ class Block:
         self.dir = 1
         self.pos = 0
     def update(self):
-        for n, t in enumerate(bends):
+        for t in bends:
             if self.loc == t.loc:
                 self.dir = t.new_dir
                 if self.pos == len(snake): # if last, remove bend
@@ -171,9 +172,9 @@ def keyPressed():
             #time.sleep(0.001)
 
 def die():
+    noLoop()
     t = "You died with a score of "+str(len(snake)-start_len)
     fs = 60
-    noLoop()
     textSize(fs)
     fill(colors["final score"])
     text(t, (width - textWidth(t))/2, (height - fs)/2)
