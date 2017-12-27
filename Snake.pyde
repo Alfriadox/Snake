@@ -1,4 +1,4 @@
-'''
+"""
 Snake.
 by Antonia Calia-Bogan
 
@@ -19,11 +19,11 @@ experiences on my college applications through a programming portfolio.
 languages sucha as Java, JavaScript, and Rust, as well as not using the 
 processing development environment.  I settled on python and processing
 because my goal with this project is to show my ability to write code, 
-and dont't need the C-like performance or Memory safety of Rust, nor the 
-versatility and 'write once, run anywhere' abilities from Java or JS.
+and do not need the C-like performance or Memory safety of Rust, nor the 
+versatility and "write once, run anywhere" abilities from Java or JS.
 Python has more legibility than those other languages, so I chose it. 
 I chose to use processing to avoid writing too many lines of glue code 
-between the logic I want to showcase and someone else's graphics API
+between the logic I want to showcase and someone elses' graphics API
 (Application Programming Interface).
 
     This program shows mastery of all parts of programming, including
@@ -31,7 +31,7 @@ variables, functions, classes/objects, iteration, and conditionals. The
 accompanying video shows the program running and showcases some of the 
 features. The programming paradigm in this project is best described as 
 procedural, event driven, and slightly object oriented. 
-'''
+"""
 
 # ----- Edit this to customize / change difficulty / debug -----
 grid_size = 24    # number of squares in the snake grid
@@ -56,7 +56,7 @@ colors = {        # color and style dictionary.
 import time # imports the time module
 snake = [] # list of Blocks which stores the snake, where the last element is the head
 bends = [] # list of Turns for the bend points
-gift  = [int(random(1,grid_size)), int(random(1, grid_size))] # gift location (block, block)
+gift  = [int(random(1,grid_size)), int(random(1, grid_size))] # gift location
 
 # Setup function, runs once when the program is started.
 def setup():   
@@ -93,7 +93,7 @@ def draw():
         elif snake[-2].dir == 4:
             snake[-1].loc[1] -= 1
         updatePos()                       # update the `pos` field of every block in the snake.
-    else:                                 # else - if the snake hasn't eaten a gift:
+    else:                                 # else - if the snake has not eaten a gift:
         fill(colors["gift"])              # draw the gift at its current location. 
         stroke(colors["gift weight"])
         rect((gift[0]-1)*width/grid_size, (gift[1]-1)*height/grid_size, width/grid_size, height/grid_size)
